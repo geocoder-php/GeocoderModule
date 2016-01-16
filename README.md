@@ -1,6 +1,5 @@
-Gecoder for Zend Framework 2
+Geocoder for Zend Framework 2
 ===
-
 
 This package allows you to use [**Geocoder**](http://geocoder-php.org/Geocoder/) in [**Zend Framework 2**](http://framework.zend.com/)
 
