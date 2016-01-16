@@ -2,6 +2,7 @@
 
 namespace ZFTest\Geocoder;
 
+use Ivory\HttpAdapter\CurlHttpAdapter;
 use Ivory\HttpAdapter\Zend2HttpAdapter;
 use Zend\ServiceManager\ServiceManager;
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
@@ -47,11 +48,7 @@ class GeocoderAbstractFactoryTest extends AbstractHttpControllerTestCase
                 'config_glob_paths' => []
             ],
             'service_listener_options' => [],
-            'service_manager' => [
-                /*'invokables' => [
-                    'Foo\Bar\HttpAdapter' => Zend2HttpAdapter::class,
-                ],*/
-            ],
+            'service_manager' => [],
         ]);
         parent::setUp();
     }
@@ -81,30 +78,28 @@ class GeocoderAbstractFactoryTest extends AbstractHttpControllerTestCase
      */
     public function testCanCreateServiceWithName($string, $isValid)
     {
-        $this->services->setService('Config', include __DIR__ . '/../../config/zf.geocoder.global.php');
+        $this->services->setService('Config', include __DIR__ . '/../../config/zf.geocoder.local.php.dist');
         $boolean = $this->factory->canCreateServiceWithName($this->services, 'string', $string);
         $this->assertEquals($isValid, $boolean);
     }
 
-    public function testCreateServiceWithNameWithSingleProvider()
+    public function testCreateServiceWithName()
     {
-        $this->services->setService('Config', include __DIR__ . '/../TestAsset/single-provider.php');
+        $this->services->setService('Config', include __DIR__ . '/../TestAsset/providers.php');
         $this->services->setService('Foo\Bar\HttpAdapter', new Zend2HttpAdapter());
-        $this->assertInstanceOf('Geocoder\Provider\AbstractProvider', $this->factory->createServiceWithName($this->services, 'foo', 'Geocoder\GoogleMaps'));
-    }
-
-    public function testCreateServiceWithNameWithMultipleProviders()
-    {
-        $this->markTestIncomplete('Will test with multiple providers');
-    }
-
-    public function testCreateServiceWithNameFailsIfNoAdapterFound()
-    {
-        $this->markTestIncomplete('Will test without HTTP adapter');
+        $this->assertInstanceOf(
+            'Geocoder\Provider\AbstractProvider',
+            $this->factory->createServiceWithName($this->services, 'foo', 'Geocoder\GoogleMaps')
+        );
     }
 
     public function testLocalAdapterOverridesGlobal()
     {
-        $this->markTestIncomplete('Will test with per-provider HTTP adapter');
+        $this->services->setService('Config', include __DIR__ . '/../TestAsset/single-provider.php');
+        $this->services->setService('Foo\Bar\HttpAdapter', new Zend2HttpAdapter());
+        $this->services->setService('Foo\Baz\HttpAdapter', new CurlHttpAdapter());
+
+        $instance = $this->factory->createServiceWithName($this->services, 'foo', 'Geocoder\GoogleMaps');
+        $this->assertInstanceOf('Ivory\HttpAdapter\CurlHttpAdapter', $instance->getAdapter());
     }
 }

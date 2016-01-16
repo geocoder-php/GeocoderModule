@@ -72,10 +72,15 @@ class GeocoderAbstractFactory implements AbstractFactoryInterface
         $providerConfig = $config['providers'][$this->toUnderscore($providerName)];
 
         if (is_array($providerConfig)) {
-
-            $httpAdapterServiceName = isset($providerConfig['httpAdapter']) ?: $config['httpAdapter'];
+            $httpAdapterServiceName = isset($providerConfig['httpAdapter']) ?
+                $providerConfig['httpAdapter'] :
+                $config['httpAdapter'];
             if (!$serviceLocator->has($httpAdapterServiceName)) {
-                throw new ServiceNotCreatedException(sprintf('Could not create %s service because HTTP adapter %s service could not be found', $requestedName, $httpAdapterServiceName));
+                throw new ServiceNotCreatedException(sprintf(
+                    'Could not create %s service because HTTP adapter %s service could not be found',
+                    $requestedName,
+                    $httpAdapterServiceName
+                ));
             }
             $httpAdapter = $serviceLocator->get($httpAdapterServiceName);
             if (!$httpAdapter instanceof PsrHttpAdapterInterface) {
