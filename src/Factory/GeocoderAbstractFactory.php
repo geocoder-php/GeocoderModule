@@ -47,7 +47,7 @@ class GeocoderAbstractFactory implements AbstractFactoryInterface
             return false;
         }
 
-        return (array_search($this->toUnderscore($requestedName), array_keys($config['providers'])) !== false);
+        return (array_search($this->toUnderscore($parts[1]), array_keys($config['providers'])) !== false);
     }
 
     /**
