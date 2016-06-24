@@ -1,4 +1,11 @@
 <?php
+/**
+ * Geocoder (http://geocoder-php.org)
+ *
+ * @see       https://github.com/geocoder-php/GeocoderModule for the canonical source repository
+ * @copyright Copyright (c) 2016, Julien Guittard <julien.guittard@me.com>
+ * @license   https://github.com/geocoder-php/GeocoderModule/blob/master/LICENSE.md New BSD License
+ */
 
 namespace ZFTest\Geocoder;
 
@@ -13,9 +20,9 @@ use ZF\Geocoder\Factory\GeocoderAbstractFactory;
  *
  * @package     ZFTest\Geocoder
  * @version     1.0
- * @author      Julien Guittard <julien.guittard@mme.com>
- * @license     https://opensource.org/licenses/BSD-3-Clause New BSD License
- * @link        http://github.com/jguittard/geocodermodule for the canonical source repository
+ * @author      Julien Guittard <julien.guittard@me.com>
+ * @license     https://github.com/geocoder-php/GeocoderModule/blob/master/LICENSE.md New BSD License
+ * @link        http://github.com/geocoder-php/GeocoderModule for the canonical source repository
  */
 class GeocoderAbstractFactoryTest extends AbstractHttpControllerTestCase
 {
