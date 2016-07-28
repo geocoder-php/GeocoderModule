@@ -1,0 +1,46 @@
+{
+  "name"         : "jguittard/zf-geocoder",
+  "description"  : "Geocoder Service module for Zend Framework 2",
+  "type"         : "library",
+  "keywords"     : ["zf2", "geocoder", "geocoding"],
+  "homepage"     : "http://github.com/jguittard/geocodermodule",
+  "license"      : "BSD-3-Clause",
+  "authors"      : [{
+    "name"       : "Julien Guittard",
+    "email"      : "julien.guittard@me.com",
+    "homepage"   : "http://julienguittard.com",
+    "role"       : "Developer"
+  }],
+  "require"      : {
+    "php"        : ">=5.4",
+    "willdurand/geocoder": "^3.3",
+    "php-http/httplug": "^0.1.0",
+    "zendframework/zend-stdlib": "~2.5",
+    "zendframework/zend-http": "~2.5",
+    "zendframework/zend-servicemanager": "~2.5",
+    "zendframework/zend-config": "~2.5",
+    "zendframework/zend-filter": "~2.5",
+    "zendframework/zend-serializer": "~2.5",
+    "zendframework/zend-modulemanager": "~2.5",
+    "zendframework/zend-i18n": "~2.5"
+  },
+  "require-dev"  : {
+    "phpunit/phpunit"           : "~4.5.0",
+    "squizlabs/php_codesniffer" : "~2.3.4",
+    "zendframework/zend-test"   : "~2.5",
+    "zendframework/zend-log": "~2.5"
+  },
+  "autoload"     : {
+    "psr-4": {
+      "ZF\\Geocoder\\" : "src/"
+    },
+    "classmap" : [
+      "Module.php"
+    ]
+  },
+  "autoload-dev" : {
+    "psr-4": {
+      "ZFTest\\Geocoder\\" : "test/"
+    }
+  }
+}
