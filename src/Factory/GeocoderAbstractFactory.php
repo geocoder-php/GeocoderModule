@@ -57,7 +57,7 @@ final class GeocoderAbstractFactory implements AbstractFactoryInterface
      * @param string $name Normalized name by which service was requested;
      *     ignored.
      * @param string $requestedName Name by which service was requested, must
-     *     start with ZF\Geocoder\
+     *     start with Geocoder\
      * @return bool
      */
     public function canCreateServiceWithName(ServiceLocatorInterface $container, $name, $requestedName)
@@ -72,7 +72,7 @@ final class GeocoderAbstractFactory implements AbstractFactoryInterface
      * @param string $name Normalized name by which service was requested;
      *     ignored.
      * @param string $requestedName Name by which service was requested, must
-     *     start with Zend\Navigation\
+     *     start with Geocoder\
      * @return \Geocoder\Provider\AbstractProvider
      */
     public function createServiceWithName(ServiceLocatorInterface $container, $name, $requestedName)
@@ -190,7 +190,6 @@ final class GeocoderAbstractFactory implements AbstractFactoryInterface
      */
     private function hasNamedConfig($name, $config)
     {
-        //return (array_search($this->toUnderscore($parts[1]), array_keys($config['providers'])) !== false);
         $withoutPrefix = $this->getConfigName($name);
 
         if (isset($config[$withoutPrefix])) {

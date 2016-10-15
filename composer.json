@@ -49,7 +49,7 @@
       "dev-develop": "2.0-dev"
     },
     "zf": {
-      "module": "ZF\\GeoCoder"
+      "module": "ZF\\Geocoder"
     }
   },
   "scripts": {
