@@ -51,7 +51,7 @@ final class GeocoderAbstractFactory implements AbstractFactoryInterface
     protected $config;
 
     /**
-     * Can we create a geocoder instance by the requested name? (v2)
+     * Can we create a geocoder provider by the requested name? (v2)
      *
      * @param ServiceLocatorInterface $container
      * @param string $name Normalized name by which service was requested;
@@ -66,7 +66,7 @@ final class GeocoderAbstractFactory implements AbstractFactoryInterface
     }
 
     /**
-     * Can we create a navigation by the requested name? (v2)
+     * Can we create a geocoder provider by the requested name? (v2)
      *
      * @param ServiceLocatorInterface $container
      * @param string $name Normalized name by which service was requested;
