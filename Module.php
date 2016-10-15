@@ -2,9 +2,6 @@
 
 namespace ZF\Geocoder;
 
-use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
-use Zend\ModuleManager\Feature\ConfigProviderInterface;
-
 /**
  * Class Module
  *
@@ -14,24 +11,8 @@ use Zend\ModuleManager\Feature\ConfigProviderInterface;
  * @license     https://opensource.org/licenses/BSD-3-Clause New BSD License
  * @link        http://github.com/jguittard/geocodermodule for the canonical source repository
  */
-class Module implements AutoloaderProviderInterface, ConfigProviderInterface
+class Module
 {
-    /**
-     * Return an array for passing to Zend\Loader\AutoloaderFactory.
-     *
-     * @return array
-     */
-    public function getAutoloaderConfig()
-    {
-        return [
-            'Zend\Loader\StandardAutoloader' => [
-                'namespaces' => [
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-                ],
-            ],
-        ];
-    }
-
     /**
      * Returns configuration to merge with application configuration
      *
