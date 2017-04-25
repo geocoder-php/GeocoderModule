@@ -1,6 +1,7 @@
 # Composer files
 composer.phar
 vendor/
+phpunit.xml
 
 # IDE files
 .idea/
