@@ -34,7 +34,7 @@ install:
   - composer update --no-interaction --prefer-stable --prefer-dist --no-suggest --no-scripts --no-plugins $PREFER_LOWEST
 
 script:
-  - ./vendor/bin/phpunit --coverage-clover ./build/clover.xml
+  - ./vendor/bin/phpunit --colors --coverage-clover ./build/clover.xml
   - if [ $TRAVIS_PHP_VERSION != 'hhvm' ] && [ $TRAVIS_PHP_VERSION != '7' ]; then php build/coverage-checker.php build/clover.xml 70; fi
   - ./vendor/bin/phpcs
 
