@@ -1,20 +1,41 @@
 language: php
 
+sudo: false
+
+git:
+  depth: 2
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
 php:
   - 5.5
   - 5.6
   - 7
+  - 7.1
+  - nightly
   - hhvm
 
 matrix:
   allow_failures:
     - php: hhvm
+    - php: nightly
+  fast_finish: true
 
-before_script:
-  - composer install --no-interaction --prefer-source
+env:
+  matrix:
+    - PREFER_LOWEST=""
+    - PREFER_LOWEST="--prefer-lowest"
+
+before_install:
+  - composer config --global github-oauth.github.com $GITHUB_OAUTH_TOKEN
+
+install:
+  - composer update --no-interaction --prefer-stable --prefer-dist --no-suggest --no-scripts --no-plugins $PREFER_LOWEST
 
 script:
-  - ./vendor/bin/phpunit --coverage-clover ./build/clover.xml
+  - ./vendor/bin/phpunit --colors --coverage-clover ./build/clover.xml
   - if [ $TRAVIS_PHP_VERSION != 'hhvm' ] && [ $TRAVIS_PHP_VERSION != '7' ]; then php build/coverage-checker.php build/clover.xml 70; fi
   - ./vendor/bin/phpcs
 
